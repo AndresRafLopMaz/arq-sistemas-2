@@ -67,7 +67,7 @@ Acciones del pipeline:
 ---
 
 ## 🖼️ Evidencia de la aplicación
-<img width="1830" height="1014" alt="Screenshot From 2026-02-22 17-48-23" src="https://github.com/user-attachments/assets/694329b7-afdd-4989-b53c-3081b74414bb" />
+![Screenshot From 2026-02-22 17-48-23](https://github.com/user-attachments/assets/694329b7-afdd-4989-b53c-3081b74414bb)
 
 
 ---
