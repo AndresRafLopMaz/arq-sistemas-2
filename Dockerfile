@@ -3,7 +3,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Copiamos lockfile para que npm ci funcione
-COPY app/package.json app/package-lock.json ./
+COPY package.json package-lock.json ./
 RUN npm ci
 
 # Copiamos el resto del código
