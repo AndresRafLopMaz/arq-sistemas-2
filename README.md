@@ -1,95 +1,83 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
+# Assignment 02 — Vite + React + Tailwind en CDN (AWS S3 + CloudFront)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web estática creada con **Vite + React + TypeScript + Tailwind** y publicada en un **CDN de AWS (S3 + CloudFront)**.  
+Despliegue automático con **GitHub Actions**: build → upload a S3 → invalidate CloudFront.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✅ URL pública (CDN)
+- CloudFront: https://d10lh0klntq5rq.cloudfront.net/
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🧱 Tecnologías
+- Vite + React + TypeScript
+- TailwindCSS
+- AWS S3
+- AWS CloudFront
+- Doppler
+- GitHub Actions
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-=======
-# Assignment 01 - Load Balancer (Nginx Round Robin)
-
-## Diagrama de infraestructura
-
-Cliente -> http://localhost:8080 -> Nginx Load Balancer -> (Round Robin) -> web1, web2
-
-## Comando para ejecutar la infraestructura
+## 📦 Build local
 ```bash
-docker compose up -d
-```
+npm install
+npm run build
 
-##URL del Balanceador
-```bash
-http://localhost:8080/
-```
 
-##Prueba Rapida
-```bash
-for i in {1..10}; do curl -sI http://localhost:8080 | grep -i "^X-Backend:"; done
->>>>>>> origin/main
-```
+---
+
+## Segmento 2/3 — Doppler + GitHub Secrets (con capturas)
+
+```md
+## 🔐 Doppler
+
+### Config Syncs (Doppler ↔ GitHub)
+<img width="1561" height="377" alt="Screenshot From 2026-02-22 17-46-39" src="https://github.com/user-attachments/assets/3b684b82-69e9-402f-a0d3-53d2b5568155" />
+
+### Variables / Secrets en Doppler (valores ocultos)
+
+<img width="1561" height="665" alt="Screenshot From 2026-02-22 17-46-56" src="https://github.com/user-attachments/assets/70e3b8db-23b8-4bc6-a22f-07e4e4173135" />
+
+Secrets usados en Doppler:
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- AWS_REGION
+- S3_BUCKET
+- CLOUDFRONT_DISTRIBUTION_ID
+
+---
+
+## 🔑 GitHub Secrets
+
+<img width="1830" height="964" alt="Screenshot From 2026-02-22 17-47-41" src="https://github.com/user-attachments/assets/2998573e-a749-4f4a-96c1-ed47fd72eea2" />
+
+
+## ⚙️ GitHub Actions Pipeline
+
+Workflow:
+- `.github/workflows/deploy-cdn.yml`
+
+Acciones del pipeline:
+1. **Build**: `npm ci` y `npm run build`
+2. **Upload**: sube el contenido de `dist/` al **root** del bucket S3
+3. **Invalidate**: invalida CloudFront (`/*`)
+
+---
+
+## 🖼️ Evidencia de la aplicación
+<img width="1830" height="1014" alt="Screenshot From 2026-02-22 17-48-23" src="https://github.com/user-attachments/assets/694329b7-afdd-4989-b53c-3081b74414bb" />
+
+
+---
+
+## 📌 Entregables
+- Repositorio: https://github.com/AndresRafLopMaz/arq-sistemas-2
+- Rama: `assignment-02`
+- URL pública (CDN): https://d10lh0klntq5rq.cloudfront.net/
+
+
+
+
+
