@@ -25,3 +25,6 @@ dist-ssr
 
 # beanstalk bundle
 deploy.zip
+
+# local deploy artifacts
+deploy*
