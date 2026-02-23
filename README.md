@@ -34,11 +34,11 @@ npm run build
 ## 🔐 Doppler
 
 ### Config Syncs (Doppler ↔ GitHub)
-<img width="1561" height="377" alt="Screenshot From 2026-02-22 17-46-39" src="https://github.com/user-attachments/assets/3b684b82-69e9-402f-a0d3-53d2b5568155" />
+![Doppler Config Syncs](docs/screenshots/doppler-config-syncs.png)
 
 ### Variables / Secrets en Doppler (valores ocultos)
 
-<img width="1561" height="665" alt="Screenshot From 2026-02-22 17-46-56" src="https://github.com/user-attachments/assets/70e3b8db-23b8-4bc6-a22f-07e4e4173135" />
+![Doppler Secrets](docs/screenshots/doppler-secrets.png)
 
 Secrets usados en Doppler:
 - AWS_ACCESS_KEY_ID
@@ -51,7 +51,7 @@ Secrets usados en Doppler:
 
 ## 🔑 GitHub Secrets
 
-<img width="1830" height="964" alt="Screenshot From 2026-02-22 17-47-41" src="https://github.com/user-attachments/assets/2998573e-a749-4f4a-96c1-ed47fd72eea2" />
+![GitHub Secrets](docs/screenshots/github-secrets.png)
 
 
 ## ⚙️ GitHub Actions Pipeline
@@ -68,7 +68,7 @@ Acciones del pipeline:
 
 ## 🖼️ Evidencia de la aplicación
 
-<img width="1830" height="1014" alt="Screenshot From 2026-02-22 17-48-23" src="https://github.com/user-attachments/assets/fb15705a-bce7-427e-aa7a-f1a45a560269" />
+![CloudFront URL](docs/screenshots/cloudfront-url.png)
 
 
 ---
