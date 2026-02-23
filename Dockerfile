@@ -6,14 +6,14 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# Copiamos el resto del código
-COPY app/ ./
+# Copiamos el resto del proyecto
+COPY . .
 RUN npm run build
 
 # ---- Runtime stage ----
 FROM nginx:alpine
 
-# SPA fallback (para React Router y similares)
+# SPA fallback (React Router y similares)
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY <<'NGINXCONF' /etc/nginx/conf.d/default.conf
 server {
@@ -28,6 +28,6 @@ server {
 }
 NGINXCONF
 
+# Copiamos el build a nginx
 COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
