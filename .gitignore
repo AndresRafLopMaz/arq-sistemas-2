@@ -28,3 +28,4 @@ deploy.zip
 
 # local deploy artifacts
 deploy*
+!.github/workflows/deploy-beanstalk.yml
