@@ -1,55 +1,6 @@
-:root{
-  --bg1:#0b1220;
-  --bg2:#0e1a33;
-  --card:#0f2447;
-  --text:#e8eefc;
-  --muted:#b8c7ff;
-  --accent:#78a6ff;
-}
-
-*{ box-sizing:border-box; }
-html,body{ height:100%; margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial; }
-
-.page{
-  min-height:100vh;
-  display:grid;
-  place-items:center;
-  padding:32px;
-  background: radial-gradient(1200px 800px at 30% 20%, var(--bg2), var(--bg1));
-  color:var(--text);
-}
-
-.card{
-  width:min(720px, 100%);
-  padding:28px 26px;
-  border-radius:18px;
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-  border:1px solid rgba(120,166,255,.25);
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-}
-
-.badge{
-  display:inline-block;
-  margin:0 0 10px;
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid rgba(120,166,255,.35);
-  background: rgba(120,166,255,.10);
-  color: var(--muted);
-  font-size:13px;
-  letter-spacing:.2px;
-}
-
-.title{
-  margin:0 0 8px;
-  font-size:40px;
-  line-height:1.05;
-  letter-spacing:-.6px;
-}
-
-.subtitle{
-  margin:0;
-  color: var(--muted);
-  font-size:16px;
-  line-height:1.5;
-}
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif; }
+body { margin: 0; background: #0b1020; color: #e8eefc; }
+.page { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 28px 32px; text-align: center; }
+h1 { margin: 0 0 10px; font-size: 32px; letter-spacing: 0.4px; }
+p { margin: 0; opacity: 0.85; }
