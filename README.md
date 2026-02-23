@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# Assignment 03 — Docker + AWS Elastic Beanstalk + GitHub Actions
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación desplegada en AWS Elastic Beanstalk:
 
-Currently, two official plugins are available:
+- URL: http://arq-sistemas-2-assignment-03-env.eba-sqpepdry.us-east-2.elasticbeanstalk.com/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Captura de la aplicación
 
-## React Compiler
+![Aplicación funcionando](docs/screenshots/BeanStalkerProof.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Assignment 03 — Docker + AWS Elastic Beanstalk + GitHub Actions
 
-## Expanding the ESLint configuration
+Aplicación desplegada en AWS Elastic Beanstalk:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- URL: http://arq-sistemas-2-assignment-03-env.eba-sqpepdry.us-east-2.elasticbeanstalk.com/
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Captura de la aplicación
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+![Aplicación funcionando](docs/screenshots/BeanStalkerProof.png)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Secretos con Doppler
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Se utilizó **Doppler** para gestionar credenciales/variables necesarias para el despliegue (AWS/ECR/Beanstalk).  
+Doppler está sincronizado con GitHub Actions para que los secrets se mantengan actualizados en el repositorio sin exponerlos en el código.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Evidencia (capturas)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Integración Doppler ↔ GitHub Actions  
+  ![Doppler Sync](docs/screenshots/GitDopplerSync.png)
+
+- Secretos configurados para la entrega  
+  ![GitHub Secrets](docs/screenshots/GitSecretBeanStalker.png)
+
+- Configuración/alta de secrets relacionados al despliegue  
+  ![Doppler Secrets](docs/screenshots/DopplerSecretBeanADD.png)
+
+  ## Dockerización
+
+La aplicación fue dockerizada para ejecutarse como contenedor.  
+Se construye una imagen Docker y se publica en Amazon ECR, y desde ahí se despliega a Elastic Beanstalk (plataforma Docker).
+
+## Pipeline de GitHub Actions
+
+Dentro de `.github/workflows/` se configuró un workflow que realiza:
+
+1. Checkout del repositorio
+2. Configuración de credenciales AWS (por secrets)
+3. Login a Amazon ECR
+4. Build & push de la imagen Docker a ECR
+5. Despliegue a AWS Elastic Beanstalk
+
+### Evidencia (captura de workflow)
+
+![Workflow exitoso](docs/screenshots/CorrectBeanWorkFlow.png)
+
+## Capturas de configuración de AWS Elastic Beanstalk
+
+![Beanstalk](docs/screenshots/BeanStalkerProof.png)
+
+![Beanstalk](docs/screenshots/BeanStalkerAppWeb.png)
