@@ -1,0 +1,10 @@
+{
+  "AWSEBDockerrunVersion": 1,
+  "Image": {
+    "Name": "951578307146.dkr.ecr.us-east-2.amazonaws.com/arq-sistemas-2-assignment-03:latest",
+    "Update": "true"
+  },
+  "Ports": [
+    { "ContainerPort": "80" }
+  ]
+}
