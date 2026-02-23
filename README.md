@@ -5,12 +5,12 @@ Despliegue automático con **GitHub Actions**: build → upload a S3 → invalid
 
 ---
 
-## ✅ URL pública (CDN)
+## URL pública (CDN)
 - CloudFront: https://d10lh0klntq5rq.cloudfront.net/
 
 ---
 
-## 🧱 Tecnologías
+## Tecnologías
 - Vite + React + TypeScript
 - TailwindCSS
 - AWS S3
@@ -20,20 +20,23 @@ Despliegue automático con **GitHub Actions**: build → upload a S3 → invalid
 
 ---
 
-## 📦 Build local
+## Build local
 ```bash
 npm install
 npm run build
+
+```
 
 
 ---
 
 ## Segmento 2/3 — Doppler + GitHub Secrets (con capturas)
 
-```md
-## 🔐 Doppler
+
+## Doppler
 
 ### Config Syncs (Doppler ↔ GitHub)
+
 ![Doppler Config Syncs](docs/screenshots/doppler-config-syncs.png)
 
 ### Variables / Secrets en Doppler (valores ocultos)
@@ -49,12 +52,12 @@ Secrets usados en Doppler:
 
 ---
 
-## 🔑 GitHub Secrets
+## GitHub Secrets
 
 ![GitHub Secrets](docs/screenshots/github-secrets.png)
 
 
-## ⚙️ GitHub Actions Pipeline
+## GitHub Actions Pipeline
 
 Workflow:
 - `.github/workflows/deploy-cdn.yml`
@@ -66,14 +69,14 @@ Acciones del pipeline:
 
 ---
 
-## 🖼️ Evidencia de la aplicación
+## Evidencia de la aplicación
 
 ![CloudFront URL](docs/screenshots/cloudfront-url.png)
 
 
 ---
 
-## 📌 Entregables
+## Entregables
 - Repositorio: https://github.com/AndresRafLopMaz/arq-sistemas-2
 - Rama: `assignment-02`
 - URL pública (CDN): https://d10lh0klntq5rq.cloudfront.net/
