@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useMemo, useState } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [count, setCount] = useState(0);
+
+  const today = useMemo(() => {
+    return new Date().toLocaleString();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="page">
+      <header className="card">
+        <div className="badge">Assignment 03 • AWS Elastic Beanstalk</div>
 
-export default App
+        <h1 className="title">Vite + React (Docker)</h1>
+        <p className="subtitle">
+          App estática desplegada en AWS Elastic Beanstalk, con imagen en ECR y
+          pipeline de GitHub Actions.
+        </p>
+
+        <div className="grid">
+          <div className="stat">
+            <div className="statLabel">Fecha / Hora</div>
+            <div className="statValue">{today}</div>
+          </div>
+
+          <div className="stat">
+            <div className="statLabel">Clicks</div>
+            <div className="statValue">{count}</div>
+          </div>
+
+          <div className="stat">
+            <div className="statLabel">Estado</div>
+            <div className="statValue ok">Online</div>
+          </div>
+        </div>
+
+        <div className="actions">
+          <button className="btn" onClick={() => setCount((c) => c + 1)}>
+            Incrementar
+          </button>
+          <button className="btn secondary" onClick={() => setCount(0)}>
+            Reset
+          </button>
+        </div>
+
+        <footer className="footer">
+          <span>© {new Date().getFullYear()} Arquitectura de Sistemas II</span>
+          <span className="dot">•</span>
+          <span>Deploy via Docker + Nginx</span>
+        </footer>
+      </header>
+    </div>
+  );
+}
