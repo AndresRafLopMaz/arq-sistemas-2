@@ -2,11 +2,12 @@ name: Build & Deploy to Elastic Beanstalk (Docker)
 
 on:
   push:
-    branches: [ "assignment-03" ]
+    branches: ["assignment-03"]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -69,4 +70,4 @@ jobs:
           region: ${{ secrets.AWS_REGION }}
           version_label: assignment-03-${{ github.run_number }}
           deployment_package: deploy.zip
-          wait_for_deployment: true
+          wait_for_deployment: false
