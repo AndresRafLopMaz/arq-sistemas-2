@@ -1,20 +1,20 @@
-# Assignment 01 - Load Balancer (Nginx Round Robin)
+# Assignment 04 — Vite + React + Docker + Doppler + GitHub Actions
 
-## Diagrama de infraestructura
+Repositorio (rama de entrega): `assignment-04`
 
-Cliente -> http://localhost:8080 -> Nginx Load Balancer -> (Round Robin) -> web1, web2
+## Captura de la aplicación (Vite)
+![Vite Run](docs/ViteRun.png)
 
-## Comando para ejecutar la infraestructura
-```bash
-docker compose up -d
-```
+## Captura de la aplicación (Docker)
+![Docker Run](docs/DockerRun.png)
 
-##URL del Balanceador
-```bash
-http://localhost:8080/
-```
+## Docker Hub
+**Imagen (latest):** `docker.io/alopez06/arq-sistemas-2-assignment-04:latest`
 
-##Prueba Rapida
-```bash
-for i in {1..10}; do curl -sI http://localhost:8080 | grep -i "^X-Backend:"; done
-```
+**Repositorio en Docker Hub:** https://hub.docker.com/r/alopez06/arq-sistemas-2-assignment-04
+
+## GitHub Actions (pipeline)
+![GitHub Workflows](docs/GithubWorkflows.png)
+
+## Evidencia de tags (latest + SHA por commit)
+![Docker Pushes / Tags](docs/DockerPushes.png)
