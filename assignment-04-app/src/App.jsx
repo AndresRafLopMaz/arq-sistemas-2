@@ -43,7 +43,7 @@ export default function App() {
       </main>
 
       <footer className="footer">
-        <small>Arquitectura de Sistemas II • 2026</small>
+        <small>Arquitectura de Sistemas II • 2026 (commit 2)</small>
       </footer>
     </div>
   );
