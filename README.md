@@ -1,20 +1,15 @@
-# Assignment 01 - Load Balancer (Nginx Round Robin)
+# Assignment 05 - Monorepo Web Application
 
-## Diagrama de infraestructura
+## Project Overview
+This repository contains a monorepo with:
+- Frontend
+- Backend
+- Database
 
-Cliente -> http://localhost:8080 -> Nginx Load Balancer -> (Round Robin) -> web1, web2
+## Branch
+- `assignment-05`
 
-## Comando para ejecutar la infraestructura
-```bash
-docker compose up -d
-```
-
-##URL del Balanceador
-```bash
-http://localhost:8080/
-```
-
-##Prueba Rapida
-```bash
-for i in {1..10}; do curl -sI http://localhost:8080 | grep -i "^X-Backend:"; done
-```
+## Pending
+- Frontend URL
+- Backend URL
+- Database screenshot
