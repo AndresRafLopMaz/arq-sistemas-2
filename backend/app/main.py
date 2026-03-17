@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
-from app.database import get_db
+from app.database import Base, engine, get_db
 from app.models import Task
 from app.schemas import TaskCreate, TaskResponse, TaskUpdate
 
@@ -26,6 +26,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Crear tablas automáticamente si no existen
+Base.metadata.create_all(bind=engine)
 
 
 @app.get("/")
