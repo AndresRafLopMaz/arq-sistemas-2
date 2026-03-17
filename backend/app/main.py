@@ -1,18 +1,13 @@
-from fastapi.middleware.cors import CORSMiddleware
-
 from typing import List
 
 from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
-
 
 from app.database import get_db
 from app.models import Task
 from app.schemas import TaskCreate, TaskResponse, TaskUpdate
-
-# Crea las tablas automáticamente solo para esta fase inicial.
-# Más adelante, cuando configuremos Alembic, dependeremos de migraciones.
-
 
 app = FastAPI(
     title="Checklist API",
@@ -38,86 +33,109 @@ def read_root():
     return {"message": "Backend funcionando correctamente"}
 
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
+
 @app.get("/tasks", response_model=List[TaskResponse])
 def get_tasks(db: Session = Depends(get_db)):
-    """
-    Obtiene todas las tareas ordenadas por id ascendente.
-    """
-    tasks = db.query(Task).order_by(Task.id.asc()).all()
-    return tasks
+    try:
+        tasks = db.query(Task).order_by(Task.id.asc()).all()
+        return tasks
+    except SQLAlchemyError:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database error while fetching tasks"
+        )
 
 
 @app.post("/tasks", response_model=TaskResponse, status_code=status.HTTP_201_CREATED)
 def create_task(task: TaskCreate, db: Session = Depends(get_db)):
-    """
-    Crea una nueva tarea en la base de datos.
-    """
-    new_task = Task(
-        title=task.title,
-        description=task.description,
-    )
+    try:
+        new_task = Task(
+            title=task.title,
+            description=task.description,
+        )
 
-    db.add(new_task)
-    db.commit()
-    db.refresh(new_task)
+        db.add(new_task)
+        db.commit()
+        db.refresh(new_task)
 
-    return new_task
+        return new_task
+    except SQLAlchemyError:
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database error while creating task"
+        )
 
 
 @app.get("/tasks/{task_id}", response_model=TaskResponse)
 def get_task(task_id: int, db: Session = Depends(get_db)):
-    """
-    Obtiene una tarea por su ID.
-    """
-    task = db.query(Task).filter(Task.id == task_id).first()
+    try:
+        task = db.query(Task).filter(Task.id == task_id).first()
 
-    if task is None:
+        if task is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Task not found"
+            )
+
+        return task
+    except SQLAlchemyError:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Task not found"
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database error while fetching task"
         )
-
-    return task
 
 
 @app.patch("/tasks/{task_id}", response_model=TaskResponse)
 def update_task(task_id: int, task_update: TaskUpdate, db: Session = Depends(get_db)):
-    """
-    Actualiza parcialmente una tarea existente.
-    """
-    task = db.query(Task).filter(Task.id == task_id).first()
+    try:
+        task = db.query(Task).filter(Task.id == task_id).first()
 
-    if task is None:
+        if task is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Task not found"
+            )
+
+        update_data = task_update.model_dump(exclude_unset=True)
+
+        for field, value in update_data.items():
+            setattr(task, field, value)
+
+        db.commit()
+        db.refresh(task)
+
+        return task
+    except SQLAlchemyError:
+        db.rollback()
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Task not found"
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database error while updating task"
         )
-
-    update_data = task_update.model_dump(exclude_unset=True)
-
-    for field, value in update_data.items():
-        setattr(task, field, value)
-
-    db.commit()
-    db.refresh(task)
-
-    return task
 
 
 @app.delete("/tasks/{task_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_task(task_id: int, db: Session = Depends(get_db)):
-    """
-    Elimina una tarea por su ID.
-    """
-    task = db.query(Task).filter(Task.id == task_id).first()
+    try:
+        task = db.query(Task).filter(Task.id == task_id).first()
 
-    if task is None:
+        if task is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Task not found"
+            )
+
+        db.delete(task)
+        db.commit()
+
+        return None
+    except SQLAlchemyError:
+        db.rollback()
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Task not found"
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database error while deleting task"
         )
-
-    db.delete(task)
-    db.commit()
-
-    return None
