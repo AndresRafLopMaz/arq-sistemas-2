@@ -43,7 +43,8 @@ def get_tasks(db: Session = Depends(get_db)):
     try:
         tasks = db.query(Task).order_by(Task.id.asc()).all()
         return tasks
-    except SQLAlchemyError:
+    except SQLAlchemyError as e:
+        print("GET /tasks DB ERROR:", repr(e))
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Database error while fetching tasks"
@@ -57,14 +58,13 @@ def create_task(task: TaskCreate, db: Session = Depends(get_db)):
             title=task.title,
             description=task.description,
         )
-
         db.add(new_task)
         db.commit()
         db.refresh(new_task)
-
         return new_task
-    except SQLAlchemyError:
+    except SQLAlchemyError as e:
         db.rollback()
+        print("POST /tasks DB ERROR:", repr(e))
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Database error while creating task"
@@ -83,7 +83,8 @@ def get_task(task_id: int, db: Session = Depends(get_db)):
             )
 
         return task
-    except SQLAlchemyError:
+    except SQLAlchemyError as e:
+        print(f"GET /tasks/{task_id} DB ERROR:", repr(e))
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Database error while fetching task"
@@ -108,10 +109,10 @@ def update_task(task_id: int, task_update: TaskUpdate, db: Session = Depends(get
 
         db.commit()
         db.refresh(task)
-
         return task
-    except SQLAlchemyError:
+    except SQLAlchemyError as e:
         db.rollback()
+        print(f"PATCH /tasks/{task_id} DB ERROR:", repr(e))
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Database error while updating task"
@@ -131,10 +132,10 @@ def delete_task(task_id: int, db: Session = Depends(get_db)):
 
         db.delete(task)
         db.commit()
-
         return None
-    except SQLAlchemyError:
+    except SQLAlchemyError as e:
         db.rollback()
+        print(f"DELETE /tasks/{task_id} DB ERROR:", repr(e))
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Database error while deleting task"
