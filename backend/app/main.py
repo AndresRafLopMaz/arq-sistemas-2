@@ -5,13 +5,14 @@ from typing import List
 from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy.orm import Session
 
-from app.database import Base, engine, get_db
+
+from app.database import get_db
 from app.models import Task
 from app.schemas import TaskCreate, TaskResponse, TaskUpdate
 
 # Crea las tablas automáticamente solo para esta fase inicial.
 # Más adelante, cuando configuremos Alembic, dependeremos de migraciones.
-Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI(
     title="Checklist API",
