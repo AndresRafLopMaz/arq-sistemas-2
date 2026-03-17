@@ -1,7 +1,7 @@
 # Python
+**/__pycache__/
+*.py[cod]
 backend/.venv/
-backend/__pycache__/
-backend/*.pyc
 
 # Node
 frontend/node_modules/
