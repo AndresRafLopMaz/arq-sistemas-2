@@ -1,20 +1,79 @@
-# Assignment 01 - Load Balancer (Nginx Round Robin)
+# Assignment 07 - API GraphQL
 
-## Diagrama de infraestructura
+## Descripción
+Proyecto desarrollado con Django, Strawberry GraphQL y PostgreSQL desplegado en Render.
 
-Cliente -> http://localhost:8080 -> Nginx Load Balancer -> (Round Robin) -> web1, web2
+## Endpoint público
+https://assignment-07-graphql.onrender.com/graphql/
 
-## Comando para ejecutar la infraestructura
-```bash
-docker compose up -d
-```
+## Modelos disponibles
 
-##URL del Balanceador
-```bash
-http://localhost:8080/
-```
+### Modelo: Autor
 
-##Prueba Rapida
-```bash
-for i in {1..10}; do curl -sI http://localhost:8080 | grep -i "^X-Backend:"; done
-```
+| Campo  | Tipo    | Descripción |
+|--------|---------|-------------|
+| id     | Integer | Identificador único del autor |
+| nombre | String  | Nombre del autor |
+| correo | String  | Correo electrónico del autor |
+| edad   | Integer | Edad del autor |
+
+### Modelo: Libro
+
+| Campo              | Tipo    | Descripción |
+|-------------------|---------|-------------|
+| id                | Integer | Identificador único del libro |
+| titulo            | String  | Título del libro |
+| genero            | String  | Género del libro |
+| paginas           | Integer | Número de páginas |
+| fechaPublicacion  | Date    | Fecha de publicación |
+| autor             | Autor   | Relación con el autor |
+
+## Consultas de ejemplo
+
+### Obtener autores
+query {
+  autores {
+    id
+    nombre
+    correo
+    edad
+  }
+}
+
+### Obtener Libros
+query {
+  libros {
+    id
+    titulo
+    genero
+    paginas
+    fechaPublicacion
+  }
+}
+
+### Obtener Libros Con Autor
+query {
+  libros {
+    titulo
+    autor {
+      nombre
+      correo
+    }
+  }
+}
+
+### Datos de Prueba Cargados
+# Autores
+Gabriel Garcia
+Ana Lopez
+
+# Libros
+Introduccion a GraphQL
+Bases de Datos Relacionales
+
+# Tecnologías utilizadas
+Python
+Django
+Strawberry GraphQL
+PostgreSQL
+Render
