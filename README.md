@@ -31,6 +31,7 @@ https://assignment-07-graphql.onrender.com/graphql/
 ## Consultas de ejemplo
 
 ### Obtener autores
+```graphql
 query {
   autores {
     id
@@ -39,8 +40,10 @@ query {
     edad
   }
 }
+```
 
 ### Obtener Libros
+```graphql
 query {
   libros {
     id
@@ -50,8 +53,10 @@ query {
     fechaPublicacion
   }
 }
+```
 
 ### Obtener Libros Con Autor
+```graphql
 query {
   libros {
     titulo
@@ -61,19 +66,20 @@ query {
     }
   }
 }
+```
 
 ### Datos de Prueba Cargados
 # Autores
-Gabriel Garcia
-Ana Lopez
+- Gabriel Garcia
+- Ana Lopez
 
 # Libros
-Introduccion a GraphQL
-Bases de Datos Relacionales
+- Introduccion a GraphQL
+- Bases de Datos Relacionales
 
 # Tecnologías utilizadas
-Python
-Django
-Strawberry GraphQL
-PostgreSQL
-Render
+- Python
+- Django
+- Strawberry GraphQL
+- PostgreSQL
+- Render
