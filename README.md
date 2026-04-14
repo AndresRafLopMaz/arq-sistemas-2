@@ -68,16 +68,16 @@ query {
 }
 ```
 
-### Datos de Prueba Cargados
-# Autores
+# Datos de Prueba Cargados
+### Autores
 - Gabriel Garcia
 - Ana Lopez
 
-# Libros
+### Libros
 - Introduccion a GraphQL
 - Bases de Datos Relacionales
 
-# Tecnologías utilizadas
+### Tecnologías utilizadas
 - Python
 - Django
 - Strawberry GraphQL
