@@ -30,6 +30,8 @@ https://assignment-07-graphql.onrender.com/graphql/
 
 ## Consultas de ejemplo
 
+![Deployment Postgress](docs/images/Deployment%20Postgress.png)
+
 ### Obtener autores
 ```graphql
 query {
@@ -41,6 +43,8 @@ query {
   }
 }
 ```
+![Consulta Libro con Autor](docs/images/Consulta%20Libro%20con%20Autor.png)
+
 
 ### Obtener Libros
 ```graphql
@@ -54,6 +58,7 @@ query {
   }
 }
 ```
+![Consulta Libro](docs/images/Consulta%20Libro.png)
 
 ### Obtener Libros Con Autor
 ```graphql
@@ -67,6 +72,7 @@ query {
   }
 }
 ```
+![Consulta Libro con Autor](docs/images/Consulta%20Libro%20con%20Autor.png)
 
 # Datos de Prueba Cargados
 ### Autores
