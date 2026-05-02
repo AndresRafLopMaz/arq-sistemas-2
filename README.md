@@ -1,20 +1,5 @@
-# Assignment 01 - Load Balancer (Nginx Round Robin)
+# Assignment 08 - Kubernetes con Minikube
 
-## Diagrama de infraestructura
+Entrega de Arquitectura de Sistemas 2 usando Minikube, Traefik, ArgoCD y una aplicación dockerizada.
 
-Cliente -> http://localhost:8080 -> Nginx Load Balancer -> (Round Robin) -> web1, web2
-
-## Comando para ejecutar la infraestructura
-```bash
-docker compose up -d
-```
-
-##URL del Balanceador
-```bash
-http://localhost:8080/
-```
-
-##Prueba Rapida
-```bash
-for i in {1..10}; do curl -sI http://localhost:8080 | grep -i "^X-Backend:"; done
-```
+La documentación completa será editada directamente desde GitHub Web.
