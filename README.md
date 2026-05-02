@@ -42,11 +42,6 @@ Entrada usada en `/etc/hosts`:
 La IP puede cambiar dependiendo de la IP asignada por Minikube.
 
 Evidencia:
-
-```md
-![Configuración DNS local](docs/images/hosts.png)
-```
-
 ![Configuración DNS local](docs/images/hosts.png)
 
 ---
@@ -129,11 +124,6 @@ app.andres-lopez.com
 ```
 
 Evidencia:
-
-```md
-![Aplicación funcionando con DNS local](docs/images/app-dns.png)
-```
-
 ![Aplicación funcionando con DNS local](docs/images/app-dns.png)
 
 ---
@@ -151,11 +141,6 @@ k8s/traefik/traefik-rendered.yaml
 Traefik se instaló como controlador de rutas dentro del clúster. Se utilizó el recurso `IngressRoute` para manejar las rutas HTTP de la aplicación y de ArgoCD.
 
 Evidencia:
-
-```md
-![IngressRoutes configurados](docs/images/ingressroutes.png)
-```
-
 ![IngressRoutes configurados](docs/images/ingressroutes.png)
 
 ---
@@ -193,16 +178,7 @@ Configuración GitOps usada:
 | Namespace destino | `assignment-08` |
 
 Evidencias:
-
-```md
 ![Login de ArgoCD usando DNS local](docs/images/argocd-login.png)
-```
-
-![Login de ArgoCD usando DNS local](docs/images/argocd-login.png)
-
-```md
-![Aplicación Healthy y Synced en ArgoCD](docs/images/argocd-dashboard.png)
-```
 
 ![Aplicación Healthy y Synced en ArgoCD](docs/images/argocd-dashboard.png)
 
@@ -307,13 +283,6 @@ Comando utilizado:
 ```bash
 kubectl get pods -A -o wide
 ```
-
-Línea Markdown para insertar la imagen:
-
-```md
-![Pods del clúster](docs/images/pods.png)
-```
-
 ![Pods del clúster](docs/images/pods.png)
 
 ---
@@ -325,13 +294,6 @@ Comando utilizado:
 ```bash
 kubectl get ingressroutes.traefik.io -A
 ```
-
-Línea Markdown para insertar la imagen:
-
-```md
-![IngressRoutes configurados](docs/images/ingressroutes.png)
-```
-
 ![IngressRoutes configurados](docs/images/ingressroutes.png)
 
 ---
@@ -343,13 +305,6 @@ Comando utilizado:
 ```bash
 grep -E "app.andres-lopez.com|argo.andres-lopez.com" /etc/hosts
 ```
-
-Línea Markdown para insertar la imagen:
-
-```md
-![Configuración DNS local](docs/images/hosts.png)
-```
-
 ![Configuración DNS local](docs/images/hosts.png)
 
 ---
@@ -361,13 +316,6 @@ URL usada:
 ```txt
 http://app.andres-lopez.com
 ```
-
-Línea Markdown para insertar la imagen:
-
-```md
-![Aplicación funcionando con DNS local](docs/images/app-dns.png)
-```
-
 ![Aplicación funcionando con DNS local](docs/images/app-dns.png)
 
 ---
@@ -379,13 +327,6 @@ URL usada:
 ```txt
 http://argo.andres-lopez.com
 ```
-
-Línea Markdown para insertar la imagen:
-
-```md
-![Login de ArgoCD usando DNS local](docs/images/argocd-login.png)
-```
-
 ![Login de ArgoCD usando DNS local](docs/images/argocd-login.png)
 
 ---
@@ -398,13 +339,6 @@ Estado observado:
 Healthy
 Synced
 ```
-
-Línea Markdown para insertar la imagen:
-
-```md
-![Aplicación Healthy y Synced en ArgoCD](docs/images/argocd-dashboard.png)
-```
-
 ![Aplicación Healthy y Synced en ArgoCD](docs/images/argocd-dashboard.png)
 
 ---
@@ -425,7 +359,7 @@ Se comprobó que:
 
 ## Seguridad
 
-La contraseña inicial de ArgoCD se obtiene desde un secreto de Kubernetes. No se debe publicar esta contraseña en el repositorio ni incluirla en capturas de pantalla.
+La contraseña inicial de ArgoCD se obtiene desde un secreto de Kubernetes.
 
 Comando usado localmente para obtenerla:
 
