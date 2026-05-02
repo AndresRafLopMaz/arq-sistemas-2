@@ -1,0 +1,34 @@
+deployment:
+  kind: DaemonSet
+
+service:
+  type: ClusterIP
+
+ports:
+  web:
+    port: 8000
+    exposedPort: 80
+    hostPort: 80
+    protocol: TCP
+    expose:
+      default: true
+
+  websecure:
+    port: 8443
+    exposedPort: 443
+    hostPort: 443
+    protocol: TCP
+    expose:
+      default: true
+
+providers:
+  kubernetesCRD:
+    enabled: true
+    allowCrossNamespace: true
+
+  kubernetesIngress:
+    enabled: true
+
+logs:
+  general:
+    level: INFO

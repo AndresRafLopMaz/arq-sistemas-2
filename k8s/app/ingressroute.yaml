@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: assignment-08-app
+  namespace: assignment-08
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`app.andres-lopez.com`)
+      kind: Rule
+      services:
+        - name: assignment-08-app
+          port: 80

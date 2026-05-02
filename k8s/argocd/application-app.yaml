@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: assignment-08-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/AndresRafLopMaz/arq-sistemas-2.git
+    targetRevision: assignment-08
+    path: k8s/app
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: assignment-08
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
