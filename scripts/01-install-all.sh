@@ -34,7 +34,12 @@ kubectl apply -f k8s/app/
 kubectl -n assignment-08 rollout status deployment/assignment-08-app --timeout=180s
 
 echo ""
+echo "===== REGISTRANDO APLICACION EN ARGOCD ====="
+kubectl apply -f k8s/argocd/application-app.yaml
+
+echo ""
 echo "===== ESTADO FINAL ====="
 kubectl get pods -A
 kubectl get svc -A
-kubectl get ingressroute -A
+kubectl get ingressroutes.traefik.io -A
+kubectl get applications.argoproj.io -n argocd
