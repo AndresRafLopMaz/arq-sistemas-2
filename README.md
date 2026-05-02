@@ -370,17 +370,3 @@ echo ""
 ```
 
 ---
-
-## Enlace de entrega
-
-Rama utilizada:
-
-```txt
-assignment-08
-```
-
-Repositorio:
-
-```txt
-https://github.com/AndresRafLopMaz/arq-sistemas-2/tree/assignment-08
-```
